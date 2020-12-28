@@ -15,7 +15,7 @@ export class Read extends React.Component {
         axios.get('http://localhost:4000/api/recipes')
             .then(
                 (response) => {
-                    this.setState({ recipes: response.data.recipes })
+                    this.setState({ recipes: response.data })
                 })
             .catch((error) => {
                  console.log(error) }
