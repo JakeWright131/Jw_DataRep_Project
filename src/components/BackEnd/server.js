@@ -73,6 +73,14 @@ app.get('/api/movies/:id', (req,res)=>{
     })
 })
 
+app.delete('/api/recipes/:id',(req,res)=>{
+    console.log("Delete Recipes: "+req.params.id);
+
+    RecipeModel.findByIdAndDelete(req.params.id,(err, data)=>{
+        res.send(data);
+    })
+})
+
 app.post('/api/recipes', (req, res)=>{
     console.log('Recipe Successfully Recieved')
     console.log(req.body.image);

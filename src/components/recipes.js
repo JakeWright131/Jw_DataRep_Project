@@ -5,7 +5,7 @@ export class Recipes extends React.Component{
 
     render(){
         return this.props.recipes.map( (recipe)=>{
-            return <RecipeItem recipe={recipe}></RecipeItem>
+            return <RecipeItem recipe={recipe} ReloadData={this.props.ReloadData}></RecipeItem>
         });
             
     }
