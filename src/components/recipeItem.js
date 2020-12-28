@@ -3,8 +3,27 @@ import React from 'react';
 import Card from 'react-bootstrap/Card';
 import ListGroup from 'react-bootstrap/ListGroup';
 import ListGroupItem from 'react-bootstrap/ListGroupItem';
+import Button from 'react-bootstrap/Button';
+import axios from 'axios';
 
 export class RecipeItem extends React.Component {
+
+    constructor(){
+        super();
+
+        this.DeleteRecipe = this.DeleteRecipe.bind(this);
+    }
+
+    DeleteRecipe(e){
+        e.preventDefault();
+        console.log("Delete: "+this.props.recipe._id);
+
+        axios.delete("http://localhost:4000/api/recipes/" +this.props.recipe._id)
+        .then(()=>{
+            this.props.ReloadData();
+        })
+        .catch();
+    }
 
     render() {
         return (
@@ -22,6 +41,7 @@ export class RecipeItem extends React.Component {
                         <ListGroupItem><h4><u>Serves</u></h4>{this.props.recipe.serves} people</ListGroupItem>
                         <ListGroupItem><h4><u>Cooking Time</u></h4>{this.props.recipe.cooking}</ListGroupItem>
                     </ListGroup>
+                    <Button variant='danger' onClick={this.DeleteRecipe}>Delete</Button>
                 </Card>
 
             </div>
