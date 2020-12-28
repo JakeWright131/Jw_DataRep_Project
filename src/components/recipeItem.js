@@ -5,6 +5,7 @@ import ListGroup from 'react-bootstrap/ListGroup';
 import ListGroupItem from 'react-bootstrap/ListGroupItem';
 import Button from 'react-bootstrap/Button';
 import axios from 'axios';
+import {Link} from 'react-router-dom';
 
 export class RecipeItem extends React.Component {
 
@@ -42,6 +43,7 @@ export class RecipeItem extends React.Component {
                         <ListGroupItem><h4><u>Cooking Time</u></h4>{this.props.recipe.cooking}</ListGroupItem>
                     </ListGroup>
                     <Button variant='danger' onClick={this.DeleteRecipe}>Delete</Button>
+                    <Link to={"/edit/"+ this.props.recipe._id} className = "btn btn-warning">Edit</Link>
                 </Card>
 
             </div>

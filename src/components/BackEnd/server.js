@@ -73,6 +73,16 @@ app.get('/api/movies/:id', (req,res)=>{
     })
 })
 
+app.put('/api/recipes/:id', (req, res)=>{
+    console.log("Update Recipe: "+req.params.id);
+    console.log(req.body);
+
+    RecipeModel.findByIdAndUpdate(req.params.id,req.body, {new:true},
+        (err,data)=>{
+            res.send(data);
+        })
+})
+
 app.delete('/api/recipes/:id',(req,res)=>{
     console.log("Delete Recipes: "+req.params.id);
 
