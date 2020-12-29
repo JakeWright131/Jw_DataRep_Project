@@ -29,23 +29,26 @@ export class RecipeItem extends React.Component {
     render() {
         return (
             <div>
-
+                <div class="container">
+  <div class="row">
+    <div class="col-sm">
                 <Card style={{ width: '20rem' }}>
+                <div class="card border-success mb-3 card text-white bg-success mb-3" >
                     <Card.Img variant="top" src={this.props.recipe.image} width="300" height="200" />
                     <Card.Body>
-                        <Card.Title><h2><i>{this.props.recipe._id} : {this.props.recipe.name}</i></h2></Card.Title>
-                        <Card.Text><h4><u>Steps</u></h4>{this.props.recipe.steps}
-                        </Card.Text>
+                        <Card.Title><h2><i><u><b>{this.props.recipe._id} : {this.props.recipe.name}</b></u></i></h2></Card.Title>
+                         <h4><u><b>Steps: </b></u></h4><p>{this.props.recipe.steps}</p>
+                        <h4><u><b>Ingredients: </b></u></h4><p>{this.props.recipe.ingredients}</p>
+                        <h4><u><b>Serves: </b></u></h4><p>{this.props.recipe.serves}</p>
+                        <h4><u><b>Cooking Time: </b></u></h4><p>{this.props.recipe.cooking}</p>
                     </Card.Body>
-                    <ListGroup className="list-group-flush">
-                        <ListGroupItem><h4><u>Ingredients</u></h4>{this.props.recipe.ingredients}</ListGroupItem>
-                        <ListGroupItem><h4><u>Serves</u></h4>{this.props.recipe.serves} people</ListGroupItem>
-                        <ListGroupItem><h4><u>Cooking Time</u></h4>{this.props.recipe.cooking}</ListGroupItem>
-                    </ListGroup>
                     <Button variant='danger' onClick={this.DeleteRecipe}>Delete</Button>
-                    <Link to={"/edit/"+ this.props.recipe._id} className = "btn btn-warning">Edit</Link>
+                    <Link to={"/edit/"+ this.props.recipe._id} className = "btn btn-warning">Edit</Link></div>
                 </Card>
 
+            </div>
+            </div>
+            </div>
             </div>
         );
     }

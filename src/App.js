@@ -11,6 +11,7 @@ import { Create } from './components/create';
 import { Read } from './components/read';
 import { Edit } from './components/edit';
 
+
 class App extends Component {
   render() {
     return (
@@ -21,7 +22,7 @@ class App extends Component {
         <Navbar bg="success" variant="dark">
           <Navbar.Brand href="#home">Navbar</Navbar.Brand>
           <Nav className="mr-auto">
-            <Nav.Link href="/">Home</Nav.Link>
+            <Nav.Link href="/" >Home</Nav.Link>
             <Nav.Link href="/view">View Recipes</Nav.Link>
             <Nav.Link href="/add">Add Recipes</Nav.Link>
           </Nav>
