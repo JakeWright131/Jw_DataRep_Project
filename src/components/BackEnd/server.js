@@ -65,13 +65,7 @@ RecipeModel.find((err, data)=>{
 //     recipes:myrecipes});
 })
 
-app.get('/api/movies/:id', (req,res)=>{
-    console.log(req.params.id);
 
-    RecipeModel.findById(req.params.id, (err, data) =>{
-        res.json(data);
-    })
-})
 
 app.put('/api/recipes/:id', (req, res)=>{
     console.log("Update Recipe: "+req.params.id);
@@ -88,6 +82,14 @@ app.delete('/api/recipes/:id',(req,res)=>{
 
     RecipeModel.findByIdAndDelete(req.params.id,(err, data)=>{
         res.send(data);
+    })
+})
+
+app.get('/api/recipes/:id', (req,res)=>{
+    console.log(req.params.id);
+
+    RecipeModel.findById(req.params.id, (err, data) =>{
+        res.json(data);
     })
 })
 
