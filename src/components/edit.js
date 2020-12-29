@@ -31,7 +31,7 @@ export class Edit extends React.Component {
     componentDidMount(){
         console.log(this.props.match.params.id);
 
-        axios.get('http://localhost:4000/api/recipes' +this.props.match.params.id)
+        axios.get('http://localhost:4000/api/recipes/' +this.props.match.params.id)
         .then(response =>{
             this.setState({
                 _id:response.data._id,
@@ -41,7 +41,7 @@ export class Edit extends React.Component {
                 serves:response.data.serves, 
                 prep:response.data.prep, 
                 cooking:response.data.cooking, 
-                steps:response.data.steps, 
+                steps:response.data.steps
 
             })
         })
@@ -49,6 +49,7 @@ export class Edit extends React.Component {
             console.log(error);
         });
     }
+    
 
     //Targets name value to change
     onChangename(e) {

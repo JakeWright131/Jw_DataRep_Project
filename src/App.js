@@ -19,21 +19,28 @@ class App extends Component {
       <div className="App">
 
 
-        <Navbar bg="success" variant="dark">
-          <Navbar.Brand href="#home">Navbar</Navbar.Brand>
+        <Navbar bg="success" variant="light">
+        <Navbar.Brand href="/">
+                <img
+                  alt=""
+                  src="https://www.pngrepo.com/download/212360/recipe.png"
+                  width="50"
+                  height="50"
+                  className="d-inline-block align-top"
+                />{" "}</Navbar.Brand>
           <Nav className="mr-auto">
-            <Nav.Link href="/" >Home</Nav.Link>
-            <Nav.Link href="/view">View Recipes</Nav.Link>
-            <Nav.Link href="/add">Add Recipes</Nav.Link>
+            <Nav.Link href="/" ><b><u>Home</u></b></Nav.Link>
+            <Nav.Link href="/view"><b><u>View Recipes</u></b></Nav.Link>
+            <Nav.Link href="/add"><b><u>Add Recipes</u></b></Nav.Link>
           </Nav>
         </Navbar>
 
 <br />
 <Switch>
   <Route path='/' component={Content} exact/>
-  <Route path='/add' component={Create} exact/>
-  <Route path='/view' component={Read} exact/>
-  <Route path='/edit/:id' component={Edit} exact/>
+  <Route path='/add' component={Create}/>
+  <Route path='/view' component={Read}/>
+  <Route path='/edit/:id' component={Edit}></Route>
 </Switch>
 
         
