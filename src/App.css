@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  background-image:url("https://freedesignfile.com/upload/2017/03/Vintage-cooking-pattern-seamless-vectors-02.jpg") ;
 }
 
 .App-logo {
@@ -41,3 +42,9 @@
 .nav-link,h1,h2,h3,h4,h5,h6,p {
   font-family: Garamond, serif;
 }
+
+p,h4{
+  text-align: left;
+}
+
+
