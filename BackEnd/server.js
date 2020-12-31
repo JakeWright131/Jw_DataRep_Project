@@ -2,10 +2,10 @@ const express = require('express')
 const app = express()
 const port = 4000
 const cors = require('cors');
-const path = require('path');
 const bodyParser = require("body-parser");
 const mongoose = require('mongoose');
-const { stringify } = require('querystring');
+const path = require('path');
+
 
 app.use(cors());
 app.use(function (req, res, next) {
@@ -16,30 +16,37 @@ app.use(function (req, res, next) {
     next();
 });
 
+// sets a path to find important files from the build folder
+// sets a path to find important files from the static folder
+app.use(express.static(path.join(__dirname, '../build')));
+app.use('/static', express.static(path.join(__dirname, 'build//static')))
+
 // create application/x-www-form-urlencoded parser
 app.use(bodyParser.urlencoded({ extended: false }))
 
 // create application/json parser
 app.use(bodyParser.json())
 
+//connection string for mongoose
 const myConnectionString = 'mongodb+srv://admin:admin@cluster0.pqpao.mongodb.net/recipe?retryWrites=true&w=majority';
-mongoose.connect(myConnectionString, {useNewUrlParser: true});
+mongoose.connect(myConnectionString, { useNewUrlParser: true });
 
 const Schema = mongoose.Schema;
 
+//defining schema
 var recipeSchema = new Schema({
-    image:String,
-    name:String,
-    _id:String,
-    steps:String,
-    ingredients:String,
-    serves:String,
-    cooking:String,
+    image: String,
+    name: String,
+    _id: String,
+    steps: String,
+    ingredients: String,
+    serves: String,
+    cooking: String,
 });
 
 var RecipeModel = mongoose.model("recipe", recipeSchema)
 
-app.get('/api/recipes', (req, res)=>{
+app.get('/api/recipes', (req, res) => {
     // const myrecipes =[
     //     {
     //         "_id": "1",
@@ -52,48 +59,52 @@ app.get('/api/recipes', (req, res)=>{
     //         "steps": "Put the onion and oil in a large pan and fry over a fairly high heat for 3-4 mins. Add the garlic and mince and fry until they both brown and cook for another couple of mins.Stir in the tomatoes and seasoning. Bring to the boil, then reduce the heat, cover and simmer, stirring occasionally, for 30 mins.Meanwhile, cook the spaghetti in a large pan of boiling, salted water, according to packet instructions. Drain well, run hot water through it, put it back in the pan."
 
     //     }
-        
-    
+
+
     // ];
 
-RecipeModel.find((err, data)=>{
-    res.json(data);
-})    
+    RecipeModel.find((err, data) => {
+        res.json(data);
+    })
 
-// res.status(200).json({
-//     message: "everything is working",
-//     recipes:myrecipes});
+    // res.status(200).json({
+    //     message: "everything is working",
+    //     recipes:myrecipes});
 })
 
 
 
-app.put('/api/recipes/:id', (req, res)=>{
-    console.log("Update Recipe: "+req.params.id);
+app.put('/api/recipes/:id', (req, res) => {
+    console.log("Update Recipe: " + req.params.id);
     console.log(req.body);
 
-    RecipeModel.findByIdAndUpdate(req.params.id,req.body, {new:true},
-        (err,data)=>{
+    RecipeModel.findByIdAndUpdate(req.params.id, req.body, { new: true },
+        (err, data) => {
             res.send(data);
         })
 })
+//listens for http request
 
-app.delete('/api/recipes/:id',(req,res)=>{
-    console.log("Delete Recipes: "+req.params.id);
+//deletes recipe item
 
-    RecipeModel.findByIdAndDelete(req.params.id,(err, data)=>{
+app.delete('/api/recipes/:id', (req, res) => {
+    console.log("Delete Recipes: " + req.params.id);
+
+    RecipeModel.findByIdAndDelete(req.params.id, (err, data) => {
         res.send(data);
     })
 })
 
-app.get('/api/recipes/:id', (req,res)=>{
+//getting api information and displaying to the screen
+app.get('/api/recipes/:id', (req, res) => {
     console.log(req.params.id);
 
-    RecipeModel.findById(req.params.id, (err, data) =>{
+    RecipeModel.findById(req.params.id, (err, data) => {
         res.json(data);
     })
 })
 
-app.post('/api/recipes', (req, res)=>{
+app.post('/api/recipes', (req, res) => {
     console.log('Recipe Successfully Recieved')
     console.log(req.body.image);
     console.log(req.body.name);
@@ -104,16 +115,24 @@ app.post('/api/recipes', (req, res)=>{
     console.log(req.body.cooking);
 
     RecipeModel.create({
-        image:req.body.image,
-        name:req.body.name,
-        _id:req.body._id,
-        steps:req.body.steps,
-        ingredients:req.body.ingredients,
-        serves:req.body.serves,
-        cooking:req.body.cooking
+        image: req.body.image,
+        name: req.body.name,
+        _id: req.body._id,
+        steps: req.body.steps,
+        ingredients: req.body.ingredients,
+        serves: req.body.serves,
+        cooking: req.body.cooking
     })
 
     res.send('Recipe Succeffully Added');
+})
+
+
+//sends files to index.html
+//sets one root for the webpage
+app.get('*', (req,res)=>{
+    res.sendFile(path.join(__dirname+'/../build/index.html'))
+  
 })
 
 app.listen(port, () => {

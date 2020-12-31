@@ -3,6 +3,12 @@ import axios from 'axios';
 
 export class Edit extends React.Component {
 
+    //renders the components onto the webpage
+
+    //text is outputted onto the webpage
+
+    //users can edit content on the webpage
+
     constructor() {
         super();
 
@@ -28,28 +34,28 @@ export class Edit extends React.Component {
         }
     }
 
-    componentDidMount(){
+    componentDidMount() {
         console.log(this.props.match.params.id);
 
-        axios.get('http://localhost:4000/api/recipes/' +this.props.match.params.id)
-        .then(response =>{
-            this.setState({
-                _id:response.data._id,
-                image:response.data.image, 
-                name:response.data.name, 
-                ingredients:response.data.ingredients, 
-                serves:response.data.serves, 
-                prep:response.data.prep, 
-                cooking:response.data.cooking, 
-                steps:response.data.steps
+        axios.get('http://localhost:4000/api/recipes/' + this.props.match.params.id)
+            .then(response => {
+                this.setState({
+                    _id: response.data._id,
+                    image: response.data.image,
+                    name: response.data.name,
+                    ingredients: response.data.ingredients,
+                    serves: response.data.serves,
+                    prep: response.data.prep,
+                    cooking: response.data.cooking,
+                    steps: response.data.steps
 
+                })
             })
-        })
-        .catch((error)=>{
-            console.log(error);
-        });
+            .catch((error) => {
+                console.log(error);
+            });
     }
-    
+
 
     //Targets name value to change
     onChangename(e) {
@@ -103,8 +109,7 @@ export class Edit extends React.Component {
     //On submit the values added will display in an alert popup
     onSubmit(e) {
         e.preventDefault();
-        alert("Recipe: " + this.state.name + " " + this.state._id + " " + this.state.steps + " " + this.state.image + " " + this.state.ingredients + " " + this.state.serves + " " + this.state.cooking);
-
+        alert("Changes made to recipe")
         const newRecipe = {
             image: this.state.image,
             name: this.state.name,
@@ -115,11 +120,11 @@ export class Edit extends React.Component {
             cooking: this.state.cooking
         }
 
-        axios.put('http://localhost:4000/api/recipes/'+ this.state._id,newRecipe,)
-        .then(res =>{
-            console.log(res.data)
-        })
-        .catch()
+        axios.put('http://localhost:4000/api/recipes/' + this.state._id, newRecipe,)
+            .then(res => {
+                console.log(res.data)
+            })
+            .catch()
 
         // axios.post('http://localhost:4000/api/recipes', newRecipe)
         //     .then((res) => {
@@ -130,13 +135,18 @@ export class Edit extends React.Component {
         //     });
     }
 
- 
+
 
     //form displays inserted text into database
+
+    //form field is displayed onto webpage with text areas
+
+    //user can edit recipe image,name,id,cooking steps,ingredients,serve amount and cooking time
 
     render() {
         return (
             <div>
+                <div class="container">
                 <div className='App'>
                     <form onSubmit={this.onSubmit}>
                         <div className='form-group'>
@@ -205,6 +215,7 @@ export class Edit extends React.Component {
                     </form>
 
                 </div>
+            </div>
             </div>
         );
     }
