@@ -1,17 +1,22 @@
-import  React  from 'react';
+import React from 'react';
+import Card from 'react-bootstrap/Card'
 
-
-export class Footer extends React.Component{
+export class Footer extends React.Component {
 
     //renders the components onto the webpage
-    
+
     //text is outputted onto the webpage
 
-    render(){
-        return(
+    render() {
+        return (
             <div>
-                <h1><i>Footer component</i></h1>
+                <Card.Body>
+                    <Card.Text>
+                        <small><center>This is a student application</center></small>
+                    </Card.Text>
+                </Card.Body>
             </div>
+
         );
     }
 

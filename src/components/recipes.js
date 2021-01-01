@@ -4,7 +4,7 @@ import { Row, Col } from 'react-bootstrap';
 
 //used map function to break up recipe information to display individual recipes
 
-//passes single recipe data to recipe item for each movie
+//passes recipe data to recipe item for each recipe
 
 export class Recipes extends React.Component {
 

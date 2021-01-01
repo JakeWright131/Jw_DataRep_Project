@@ -24,7 +24,7 @@ class App extends Component {
       <Router>
         <div className="App">
 
-          <Navbar bg="success" variant="dark">
+          <Navbar variant="dark">
             <Navbar.Brand href="/"><i><b>Recipe</b>Reminder</i>{" "}</Navbar.Brand>
             <Nav className="mr-auto">
               <Nav.Link href="/" ><b><u>Home</u></b></Nav.Link>

@@ -1,6 +1,8 @@
 import React from 'react';
 import axios from 'axios';
 
+
+
 export class Create extends React.Component {
 
     //renders the components onto the webpage
@@ -84,7 +86,7 @@ export class Create extends React.Component {
     //On submit the values added will display in an alert popup
     onSubmit(e) {
         e.preventDefault();
-        alert("Recipe: " + this.state.name + " Successfully Added" );
+        alert("Recipe: " + this.state.name + " Successfully Added");
 
         const newRecipe = {
             image: this.state.image,
@@ -108,12 +110,12 @@ export class Create extends React.Component {
 
     render() {
         return (
+
             <div class="container">
-                <div>
+                <div className="cardStyle"   >
                     <div className='App'>
                         <form onSubmit={this.onSubmit}>
                             <div className='form-group' >
-
                                 <label>Add Food Image: </label>
                                 <textarea type='text'
                                     className='form-control'
@@ -172,14 +174,21 @@ export class Create extends React.Component {
                             </div>
 
 
-                            <div className="form-group">
-                                <input type='submit' value='Add Recipe' className='btn btn-outline-success'></input>
-                            </div> </form>
-                       
+
+                            <input type='submit' value='Add Recipe' className='btn btn-success' ></input>
+
+                        </form>
+                        <br></br><br></br><br></br><br></br><br></br><br></br>
+
                     </div>
+
                 </div>
+
             </div>
+
+
         );
+
     }
 
 }
