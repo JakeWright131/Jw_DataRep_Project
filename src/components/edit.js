@@ -208,12 +208,14 @@ export class Edit extends React.Component {
                         </div>
 
 
-                        <div className="form-group">
-                            <input type='submit' value='Edit Recipe' className='btn btn-outline-warning'></input>
-                        </div>
+                        
+                            <input type='submit' value='Edit Recipe' className='btn btn-warning' ></input>
+                       
+
+                        
 
                     </form>
-
+                    <br></br><br></br><br></br><br></br><br></br><br></br>
                 </div>
             </div>
             </div>

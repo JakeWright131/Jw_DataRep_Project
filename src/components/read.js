@@ -1,6 +1,7 @@
 import React from 'react';
 import { Recipes } from './recipes';
 import axios from 'axios';
+import Search from './search'
 
 
 export class Read extends React.Component {
@@ -20,10 +21,14 @@ export class Read extends React.Component {
         this.ReloadData = this.ReloadData.bind(this);
     }
     state = {
-        recipes: [
-
-        ]
+        recipes: [],
+        searchRecipe: ''
     };
+
+    // event handler
+    handleInput = e => {
+        this.setState({ searchRecipe: e.target.value });
+    }
 
     componentDidMount() {
         axios.get('http://localhost:4000/api/recipes')
@@ -37,6 +42,7 @@ export class Read extends React.Component {
             );
     }
 
+    //reloads data on webpage
     ReloadData() {
         axios.get('http://localhost:4000/api/recipes')
             .then(
@@ -49,12 +55,19 @@ export class Read extends React.Component {
             );
     }
 
-
+    //displays recipes and their details out to the screen
+    //search bar allows the user to filter through the recipes
     render() {
+        let filteredRecipe = this.state.recipes.filter(recipe => {
+            return recipe.name.toLowerCase().includes(this.state.searchRecipe.toLowerCase());
+        });
         return (
             <div>
-                <Recipes recipes={this.state.recipes} ReloadData={this.ReloadData}></Recipes>
+                <center><Search handleInput={this.handleInput} /></center>
+                <Recipes recipes={this.state.recipes && filteredRecipe} ReloadData={this.ReloadData}></Recipes>
             </div>
+
         );
+
     }
 }
