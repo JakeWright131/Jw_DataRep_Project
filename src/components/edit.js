@@ -215,7 +215,7 @@ export class Edit extends React.Component {
                         
 
                     </form>
-                    <br></br><br></br><br></br><br></br><br></br><br></br>
+                    <br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br>
                 </div>
             </div>
             </div>
