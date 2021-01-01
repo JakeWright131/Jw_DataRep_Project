@@ -178,7 +178,7 @@ export class Create extends React.Component {
                             <input type='submit' value='Add Recipe' className='btn btn-success' ></input>
 
                         </form>
-                        <br></br><br></br><br></br><br></br><br></br><br></br>
+                        <br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br>
 
                     </div>
 
